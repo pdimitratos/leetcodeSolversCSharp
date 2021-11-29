@@ -1,0 +1,7 @@
+#Build Artifacts (C#)
+bin/
+obj/
+
+#Visual Studio Temporary Files
+.vs/
+
