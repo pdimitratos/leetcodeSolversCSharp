@@ -39,6 +39,7 @@ namespace LeetcodeSolversCSharp.Integers
                 : workingTotal;
         }
 
+        // https://leetcode.com/problems/string-to-integer-atoi
         public static int MyAtoi(this string s)
         {
             if (string.IsNullOrWhiteSpace(s)) return 0;
