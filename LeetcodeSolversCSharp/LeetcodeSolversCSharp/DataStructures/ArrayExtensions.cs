@@ -31,5 +31,27 @@ namespace LeetcodeSolversCSharp.DataStructures
 
             return currentIndex;
         }
+
+        public static int RemoveValue (this int[] nums, int val)
+        {
+            int currentIndex = 0;
+            int displacement = 0;
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (nums[i] == val)
+                {
+                    displacement++;
+                }
+                else
+                {
+                    nums[i - displacement] = nums[i];
+                    currentIndex++;
+                }
+            }
+
+
+            return currentIndex;
+        }
     }
 }
