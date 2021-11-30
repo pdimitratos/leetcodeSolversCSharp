@@ -32,7 +32,7 @@ namespace LeetcodeSolversCSharp.DataStructures
             return currentIndex;
         }
 
-        public static int RemoveValue (this int[] nums, int val)
+        public static int RemoveValue(this int[] nums, int val)
         {
             int currentIndex = 0;
             int displacement = 0;
@@ -57,7 +57,7 @@ namespace LeetcodeSolversCSharp.DataStructures
         public static int SearchInsert(this int[] nums, int target)
         {
             int index = (nums.Length - 1) / 2;
-            int stepSize = (index + 1)/ 2;
+            int stepSize = (index + 1) / 2;
             int covered = 0;
             while (covered < nums.Length / 2)
             {
@@ -79,13 +79,31 @@ namespace LeetcodeSolversCSharp.DataStructures
                 if (index < 0)
                     index = 0;
             }
-            
+
             if (nums[index] < target)
             {
                 return index + 1;
             }
 
             return index;
+        }
+
+        // https://leetcode.com/problems/maximum-subarray/
+        public static int MaxSubArray(this int[] nums)
+        {
+            int[] largestLeftSubarray = new int[nums.Length];
+            int currentMax = largestLeftSubarray[0] = nums[0];
+
+            for (int i = 1; i < nums.Length; i++)
+            {
+                largestLeftSubarray[i] = Math.Max(
+                    nums[i],
+                    largestLeftSubarray[i - 1] + nums[i]);
+
+                currentMax = Math.Max(currentMax, largestLeftSubarray[i]);
+            }
+
+            return currentMax;
         }
     }
 }
