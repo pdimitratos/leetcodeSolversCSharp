@@ -53,5 +53,39 @@ namespace LeetcodeSolversCSharp.DataStructures
 
             return currentIndex;
         }
+
+        public static int SearchInsert(this int[] nums, int target)
+        {
+            int index = (nums.Length - 1) / 2;
+            int stepSize = (index + 1)/ 2;
+            int covered = 0;
+            while (covered < nums.Length / 2)
+            {
+                if (nums[index] == target)
+                    return index;
+
+                if (nums[index] < target)
+                {
+                    index += stepSize;
+                }
+                else
+                {
+                    index -= stepSize;
+                }
+                covered += stepSize;
+                stepSize = stepSize / 2;
+                if (stepSize < 1)
+                    stepSize = 1;
+                if (index < 0)
+                    index = 0;
+            }
+            
+            if (nums[index] < target)
+            {
+                return index + 1;
+            }
+
+            return index;
+        }
     }
 }

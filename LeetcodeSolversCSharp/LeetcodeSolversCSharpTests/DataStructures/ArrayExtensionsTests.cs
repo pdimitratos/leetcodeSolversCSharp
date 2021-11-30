@@ -19,5 +19,15 @@ namespace LeetcodeSolversCSharpTests.DataStructures
         {
             Assert.AreEqual(expectedOutput, inputArray.RemoveValue(inputValueToRemove));
         }
+
+        [TestCase(new int[] { 1, 3, 5, 6 }, 5 , 2)]
+        [TestCase(new int[] { 1, 3, 5, 6 }, 2 , 1)]
+        [TestCase(new int[] { 1, 3, 5, 6 }, 7 , 4)]
+        [TestCase(new int[] { 1, 3, 5, 6 }, 0 , 0)]
+        [TestCase(new int[] { 1 }, 0 , 0)]
+        public void ValidateExampleBehavior_SearchInsert(int[] input, int targetInput, int expectedOutput)
+        {
+            Assert.AreEqual(expectedOutput, input.SearchInsert(targetInput));
+        }
     }
 }
