@@ -105,5 +105,26 @@ namespace LeetcodeSolversCSharp.DataStructures
 
             return currentMax;
         }
+
+        // https://leetcode.com/problems/plus-one/
+        public static int[] PlusOne(this int[] digits)
+        {
+            for (int i = digits.Length - 1; i >= 0; i--)
+            {
+                digits[i] = digits[i] + 1;
+                if (digits[i] > 9)
+                {
+                    digits[i] = 0;
+                }
+                else
+                {
+                    return digits;
+                }
+            }
+            int[] resultWithExtraDigit = new int[digits.Length + 1];
+            resultWithExtraDigit[0] = 1;
+            Array.Copy(digits, 0, resultWithExtraDigit, 1, digits.Length);
+            return resultWithExtraDigit;
+        }
     }
 }

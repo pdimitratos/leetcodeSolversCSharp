@@ -37,5 +37,14 @@ namespace LeetcodeSolversCSharpTests.DataStructures
         {
             Assert.AreEqual(expectedOutput, inputArray.MaxSubArray());
         }
+
+        [TestCase(new int[] { 1, 2, 3 }, new int[] { 1, 2, 4 })]
+        [TestCase(new int[] { 4, 3, 2, 1 }, new int[] { 4, 3, 2, 2 })]
+        [TestCase(new int[] { 0 }, new int[] { 1 })]
+        [TestCase(new int[] { 9 }, new int[] { 1 , 0 })]
+        public void ValidateExampleBehavior_PlusOne(int[] inputArray, int[] expectedOutput)
+        {
+            Assert.AreEqual(expectedOutput, inputArray.PlusOne());
+        }
     }
 }
