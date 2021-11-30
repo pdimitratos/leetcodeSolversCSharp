@@ -17,9 +17,23 @@ namespace LeetcodeSolversCSharpTests.Integers
         [TestCase(120, 21)]
         [TestCase(0, 0)]
         [TestCase(1534236469, 0)]
-        public void ValidateExampleBehavior_RemoveDuplicates(int input, int expectedOutput)
+        public void ValidateExampleBehavior_Reverse(int input, int expectedOutput)
         {
             Assert.AreEqual(expectedOutput, input.Reverse());
+        }
+
+        // Wow, this function is terrible.
+        [TestCase("", 0)]
+        [TestCase("2147483648", 2147483647)]
+        [TestCase("42", 42)]
+        [TestCase("    -42", -42)]
+        [TestCase("4193 with words", 4193)]
+        [TestCase("words and 987", 0)]
+        [TestCase("-91283472332", -2147483648)]
+        [TestCase("-6147483648", -2147483648)]
+        public void ValidateExampleBehavior_MyAtoi(string input, int expectedOutput)
+        {
+            Assert.AreEqual(expectedOutput, input.MyAtoi());
         }
     }
 }

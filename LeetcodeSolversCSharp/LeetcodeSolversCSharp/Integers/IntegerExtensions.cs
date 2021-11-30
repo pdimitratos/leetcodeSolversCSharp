@@ -38,5 +38,94 @@ namespace LeetcodeSolversCSharp.Integers
                 ? -1 * workingTotal
                 : workingTotal;
         }
+
+        public static int MyAtoi(this string s)
+        {
+            if (string.IsNullOrWhiteSpace(s)) return 0;
+            int result = 0;
+            int currentDigitValue = 0;
+            s = s.TrimStart();
+            bool isNegative = s[0] == '-';
+            int startingValue = s[0] == '-' || s[0] == '+'
+                ? 1
+                : 0;
+            for (int i = startingValue; i < s.Length; i++)
+            {
+                bool isReadComplete = false;
+                char current = s[i];
+                switch (current)
+                {
+                    case '0':
+                    case '1':
+                    case '2':
+                    case '3':
+                    case '4':
+                    case '5':
+                    case '6':
+                    case '7':
+                    case '8':
+                    case '9':
+                        currentDigitValue = CharToDigit(current);
+                        break;
+                    default:
+                        isReadComplete = true;
+                        break;
+                }
+                if (isReadComplete)
+                {
+                    break;
+                }
+                else
+                {
+                    var previousResult = result;
+                    if (result > int.MaxValue / 10)
+                    {
+                        return isNegative ? int.MinValue : int.MaxValue;
+                    }
+                    result = result * 10;
+                    result += currentDigitValue;
+                    if (previousResult > result) // Overflow
+                    {
+                        return isNegative ? int.MinValue : int.MaxValue;
+                    }
+                }
+            }
+
+            return isNegative
+                ? -result
+                : result;
+        }
+
+        private static int CharToDigit(char c)
+        {
+            // There's probably a more efficient way of doing this with
+            // direct casting based on the character's numeric value.
+            // But I'm too lazy to look up the offset.
+            switch (c)
+            {
+                case '0':
+                    return 0;
+                case '1':
+                    return 1;
+                case '2':
+                    return 2;
+                case '3':
+                    return 3;
+                case '4':
+                    return 4;
+                case '5':
+                    return 5;
+                case '6':
+                    return 6;
+                case '7':
+                    return 7;
+                case '8':
+                    return 8;
+                case '9':
+                    return 9;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(c));
+            }
+        }
     }
 }
