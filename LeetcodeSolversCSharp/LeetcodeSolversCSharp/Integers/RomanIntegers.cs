@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LeetcodeSolversCSharp.Integers
 {
-    public class RomanToIntSolver
+    public class RomanIntegers
     {
         // https://leetcode.com/problems/roman-to-integer/
         /// <summary>
@@ -32,6 +32,19 @@ namespace LeetcodeSolversCSharp.Integers
             return total;
         }
 
+        // https://leetcode.com/problems/integer-to-roman/
+        public string IntToRoman(int num)
+        {
+            // TODO: IIII => IV exception case
+            StringBuilder result = new StringBuilder();
+            while (num > 0)
+            {
+                result.Append(ExtractNextRomanCharacter(ref num));
+            }
+            return result.ToString();
+        }
+
+
         private int RomanToInt(char c)
         {
             switch (c)
@@ -47,6 +60,48 @@ namespace LeetcodeSolversCSharp.Integers
                     throw new ArgumentOutOfRangeException($"Expected valid roman numeral between I and M, but received {c}");
 
             }
+        }
+
+        private string ExtractNextRomanCharacter(ref int i)
+        {
+            if (i < 1) throw new ArgumentOutOfRangeException(nameof(i));
+
+            var characterTranslations = new List<(string, int)>()
+            {
+                ("M", 1000),
+                ("CM", 900),
+                ("D", 500),
+                ("CD", 400),
+                ("C", 100),
+                ("XC", 90),
+                ("L", 50),
+                ("XL", 40),
+                ("X", 10),
+                ("IX", 9),
+                ("V", 5),
+                ("IV", 4),
+                ("I", 1)
+            };
+
+            foreach (var translation in characterTranslations)
+            {
+                if (TryExtractRomanCharacter(ref i, translation.Item2))
+                {
+                    return translation.Item1;
+                }
+            }
+
+            throw new ArgumentOutOfRangeException(nameof(i));
+        }
+
+        private bool TryExtractRomanCharacter(ref int i, int romanValue)
+        {
+            if (i >= romanValue)
+            {
+                i = i - romanValue;
+                return true;
+            }
+            return false;
         }
     }
 }
