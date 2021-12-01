@@ -35,7 +35,6 @@ namespace AdventOfCode.Day1
             int[] orderedWindows = new int[orderedDepthMeasurements.Length - 2];
             orderedWindows[0] = orderedDepthMeasurements.Take(3).Sum();
             int depthIncreases = 0;
-            int previousMeasurement = int.MaxValue;
 
             for (int i = 1; i < orderedDepthMeasurements.Length - 2; i++)
             {
