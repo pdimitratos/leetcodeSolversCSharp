@@ -35,7 +35,6 @@ namespace LeetcodeSolversCSharp.Integers
         // https://leetcode.com/problems/integer-to-roman/
         public string IntToRoman(int num)
         {
-            // TODO: IIII => IV exception case
             StringBuilder result = new StringBuilder();
             while (num > 0)
             {
